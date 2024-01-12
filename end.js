@@ -1,4 +1,3 @@
-// end.js
 const finalScoreText = document.getElementById('finalScore')
 const username = document.getElementById('username')
 const saveScoreBtn = document.getElementById('saveScoreBtn')

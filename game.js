@@ -1,5 +1,5 @@
-const TIMER_START = 100 // Startvärdet för din timer i sekunder
-const TIME_PENALTY = 10 // Straffet för fel svar i sekunder
+const TIMER_START = 100
+const TIME_PENALTY = 10
 const MAX_QUESTIONS = 6
 
 let timer = TIMER_START
@@ -79,7 +79,7 @@ startTimer = () => {
       endGame()
     } else {
       timer--
-      updateTimerDisplay(timer) // Uppdatera visningen av timern
+      updateTimerDisplay(timer)
     }
   }, 1000)
 }
@@ -119,7 +119,7 @@ getNewQuestion = () => {
 }
 
 updateScore = () => {
-  scoreText.innerText = timer // Uppdatera scoreText med den kvarvarande tiden
+  scoreText.innerText = timer
 }
 
 choices.forEach((choice) => {
@@ -133,16 +133,15 @@ choices.forEach((choice) => {
       selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
 
     if (classToApply === 'correct') {
-      // Ingen poängräkning för rätt svar, bara nedräkning av timer
     } else {
-      timer = Math.max(0, timer - TIME_PENALTY) // Dra av tid för fel svar
+      timer = Math.max(0, timer - TIME_PENALTY)
     }
 
     selectedChoice.parentElement.classList.add(classToApply)
     setTimeout(() => {
       selectedChoice.parentElement.classList.remove(classToApply)
       getNewQuestion()
-      updateScore() // Uppdatera poängen (tiden) efter varje svar
+      updateScore()
       if (timer <= 0 || questionCounter >= MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore', timer)
         window.location.assign('/end.html')
